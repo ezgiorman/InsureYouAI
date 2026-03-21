@@ -31,9 +31,9 @@
 
                             @await Component.InvokeAsync("_BlogDetailContentComponentPartial", new { id = ViewBag.i })
 
-                            @await Component.InvokeAsync("_BlogDetailNextAndPrevPostComponentPartial", new { id = ViewBag.i })
+                            @await Component.InvokeAsync("_BlogDetailNextAndPrevPostComponentPartial")
 
-                            @await Component.InvokeAsync("_BlogDetailAboutAuthorComponentPartial", new { id = ViewBag.i })
+                            @await Component.InvokeAsync("_BlogDetailAboutAuthorComponentPartial")
 
                             @await Component.InvokeAsync("_BlogDetailCommentListComponentPartial", new { id = ViewBag.i })
 

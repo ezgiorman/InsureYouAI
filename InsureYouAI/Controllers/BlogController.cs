@@ -1,6 +1,7 @@
 ﻿using InsureYouAI.Context;
 using InsureYouAI.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
@@ -42,14 +43,14 @@ namespace InsureYouAI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddComment(Comment comment)
+        public async Task<IActionResult> AddComment(Comment comment)
         {
             comment.CommentDate = DateTime.Now;
             comment.AppUserId = "04b2a527-97b0-4484-87f1-061526c86cbb";
 
             using (var client = new HttpClient())
             {
-                var apikey = "";
+                var apikey = "api-key";
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apikey);
 
                 try
@@ -65,7 +66,7 @@ namespace InsureYouAI.Controllers
                     var translateResponseString = await translateResponse.Content.ReadAsStringAsync();
 
                     string englishText = comment.CommentDetail;
-                    if(translateResponseString.TrimStart().StartsWith("["))
+                    if (translateResponseString.TrimStart().StartsWith("["))
                     {
                         var translateDoc = JsonDocument.Parse(translateResponseString);
                         englishText = translateDoc.RootElement[0].GetProperty("translation_text").GetString();
@@ -83,17 +84,16 @@ namespace InsureYouAI.Controllers
                     var toxicResponse = await client.PostAsync("https://api-inference.huggingface.co/models/unitary/toxic-bert", toxicContent);
                     var toxicResponseString = await toxicResponse.Content.ReadAsStringAsync();
 
-                    
-                 
+
                     if (toxicResponseString.TrimStart().StartsWith("["))
                     {
                         var toxicDoc = JsonDocument.Parse(toxicResponseString);
-                        foreach(var item in toxicDoc.RootElement[0].EnumerateArray())
+                        foreach (var item in toxicDoc.RootElement[0].EnumerateArray())
                         {
                             string label = item.GetProperty("label").GetString();
                             double score = item.GetProperty("score").GetDouble();
 
-                            if(score>0.5)
+                            if (score > 0.5)
                             {
                                 comment.CommentStatus = "Toksik Yorum";
                                 break;
@@ -101,7 +101,7 @@ namespace InsureYouAI.Controllers
                         }
                     }
 
-                    if(string.IsNullOrEmpty(comment.CommentStatus))
+                    if (string.IsNullOrEmpty(comment.CommentStatus))
                     {
                         comment.CommentStatus = "Yorum Onaylandı";
                     }

@@ -43,10 +43,15 @@
                     
                     <div class="col-sm-12 col-md-12 col-lg-4">
                         <aside class="sidebar-widget">
+
                             @await Html.PartialAsync("~/Views/Blog/GetBlog.cshtml")
+
                             @await Component.InvokeAsync("_BlogListSocialMediaComponentPartial")
+
                             @await Component.InvokeAsync("_BlogListCategoriesComponentPartial")
+
                             @await Component.InvokeAsync("_BlogListLast3RecentBlogComponentPartial")
+
                             @await Component.InvokeAsync("_BlogListTagComponentPartial")
                             
                             
@@ -65,6 +70,7 @@
     <!-- main-area-end -->
     <!-- footer -->
     @await Component.InvokeAsync("_DefaultFooterComponentPartial")
+
     @await Component.InvokeAsync("_DefaultScriptsComponentPartial")
 
     <!-- footer-end -->
