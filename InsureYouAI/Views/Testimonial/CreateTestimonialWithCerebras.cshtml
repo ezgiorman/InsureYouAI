@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "CreateTestimonialWithCerebras";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    var testimonials = ViewBag.testimonials;
+}
+
+<div class="container-mt-5">
+    <h2>Cerebras LLM ile Oluşturulan Müşteri ve Yorum İçerikleri</h2>
+    <ul class="list-group mt-3">
+        @if (testimonials != null)
+        {
+            foreach (var item in testimonials)
+            {
+                <li class="list-group-item">@item</li>
+            }
+        }
+        else
+        {
+            <li class="list-group-item text-danger">Cerebras'tan veri alınamadı: @ViewBag.services</li>
+        }
+    </ul>
+</div>
+
