@@ -15,7 +15,7 @@ namespace InsureYouAI.ViewComponents.DefaultViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var values = _context.Articles.OrderByDescending(x => x.ArticleId).Include(y=>y.Category).Take(3).ToList();
+            var values = _context.Articles.OrderByDescending(x => x.ArticleId).Include(z=>z.AppUser).Include(y=>y.Category).Take(3).ToList();
             return View(values);
         }
     }

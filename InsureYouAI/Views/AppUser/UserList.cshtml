@@ -10,10 +10,6 @@
     <div class="card-body">
         <div class="d-flex align-items-center">
             <h5 class="mb-0">InsureYou AI Kullanıcı Listesi</h5>
-            <form class="ms-auto position-relative">
-                <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-search"></i></div>
-                <input class="form-control ps-5" type="text" placeholder="search">
-            </form>
         </div>
         <div class="table-responsive mt-3">
             <table class="table align-middle">
@@ -34,8 +30,8 @@
                             <td>@count</td>
                             <td>@item.Name @item.Surname</td>
                             <td><a href="#" class="btn btn-info">Durum</a</td>
-                            <td><a href="#" class="btn btn-warning">Profil</a</td>
-                            <td><a href="#" class="btn btn-secondary">Yorumlar</a</td>
+                            <td><a href="/AppUser/UserProfileWithAI/@item.Id" class="btn btn-warning">Profil</a</td>
+                            <td><a href="/AppUser/UserCommentsProfileWithAI/@item.Id" class="btn btn-secondary">Yorumlar</a</td>
                         </tr>
                     }
                 </tbody>
