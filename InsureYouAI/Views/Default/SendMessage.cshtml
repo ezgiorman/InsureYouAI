@@ -15,39 +15,29 @@
                 </div>
                     <div class="tab-pane fade show active" id="voverview" role="tabpanel">
                         <div class="contact-bg">
-                            <form action="mail.php" method="post" class="contact-form">
+                        <form asp-action="SendMessage" asp-controller="Default" method="post" class="contact-form">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="contact-field p-relative c-name mb-20">
-                                            <input type="text" id="firstn" name="firstn" placeholder="First Name" required>
+                                            <input type="text" id="firstn" name="NameSurname" placeholder="Adınız Soyadınız" required>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="contact-field p-relative c-subject mb-20">
-                                            <input type="text" id="email" name="email" placeholder="info" required>
+                                            <input type="text" id="email" name="Email" placeholder="Email Adresiniz" required>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    
+                                    <div class="col-lg-12">
                                         <div class="contact-field p-relative c-name mb-20">
-                                            <input type="text" id="phone" name="phone" placeholder="Phone No." required>
+                                            <input type="text" id="des" name="Subject" placeholder="Mesaj Konusu" required>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="contact-field p-relative c-subject mb-20">
-                                            <input type="text" id="tp" name="email" placeholder="Total Person" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="contact-field p-relative c-name mb-20">
-                                            <input type="text" id="des" name="destination" placeholder="Destination" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="contact-field p-relative c-subject mb-20">
-                                            <input type="text" id="sty" name="stay" placeholder="Days To Stay" required>
+                                            <textarea class="form-control" rows="5" name="MessageDetail" placeholder="Mesajınızı buraya yazabilirsiniz..."></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">

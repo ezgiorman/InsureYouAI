@@ -54,7 +54,7 @@ namespace InsureYouAI.Controllers
             //makaleleri birleştirip AI'ya gönderelim
             var allArticles = string.Join("\n\n", articles);
 
-            var apikey = "api-key";
+            var apikey = "csk-nhh59fddyfdtdx3xnhk6hwnxm9p333ydtwwj6fdxxr44k3jc";
 
             //prompt yazımı
 

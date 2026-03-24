@@ -25,5 +25,6 @@ public class InsureContext:IdentityDbContext<AppUser>
     public DbSet<Comment> Comments { get; set; }
     public DbSet<PricingPlanItem> PricingPlanItems { get; set; }
     public DbSet<Gallery> Galleries { get; set; }
+    public DbSet<AIMessage> AIMessages { get; set; }
     
 }
