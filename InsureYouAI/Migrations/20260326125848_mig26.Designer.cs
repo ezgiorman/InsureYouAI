@@ -4,6 +4,7 @@ using InsureYouAI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InsureYouAI.Migrations
 {
     [DbContext(typeof(InsureContext))]
-    partial class InsureContextModelSnapshot : ModelSnapshot
+    [Migration("20260326125848_mig26")]
+    partial class mig26
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -395,7 +398,10 @@ namespace InsureYouAI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PolicyId"));
 
-                    b.Property<string>("AppUserId")
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AppUserId1")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -428,9 +434,9 @@ namespace InsureYouAI.Migrations
 
                     b.HasKey("PolicyId");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("AppUserId1");
 
-                    b.ToTable("Policies");
+                    b.ToTable("Policy");
                 });
 
             modelBuilder.Entity("InsureYouAI.Entities.PricingPlan", b =>
@@ -786,7 +792,7 @@ namespace InsureYouAI.Migrations
                 {
                     b.HasOne("InsureYouAI.Entities.AppUser", "AppUser")
                         .WithMany("Policies")
-                        .HasForeignKey("AppUserId")
+                        .HasForeignKey("AppUserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
